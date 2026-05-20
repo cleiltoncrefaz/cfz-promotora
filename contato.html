@@ -834,8 +834,7 @@
 
                 <div class="form-box">
                     <!-- <h2>Preencha o formulário e garanta sua inscrição!</h2> -->
-                    <iframe name="hidden_iframe" style="display:none;"></iframe>
-                    <form method="post" id="form-simulacao" target="hidden_iframe">
+                    <form method="post" id="form-simulacao">
                         <input type="hidden" name="submitted" value="true">
 
                         <div class="input-group" hidden>
@@ -1151,6 +1150,8 @@
                             let hasError = false;
 
                             if (!validarObrigatorio(fields.nome)) hasError = true;
+                            if (!validarObrigatorio(fields.produto)) hasError = true;
+                            if (!validarObrigatorio(fields.mensagem)) hasError = true;
 
                             if (isVisible(fields.celular) && fields.celular.required && !validarTelefone(fields.celular.value)) {
                                 setInvalid(fields.celular, errors.celular, 'Digite um celular válido.');
@@ -1172,6 +1173,10 @@
                                 return;
                             }
 
+                            if (isVisible(fields.celular)) {
+                                fields.celular.value = onlyDigits(fields.celular.value);
+                            }
+
                             if (msg) {
                                 msg.style.display = 'flex';
                                 msg.innerHTML = '✅ Formulário enviado com sucesso!';
@@ -1182,8 +1187,6 @@
                                 btn.style.opacity = '0.85';
                                 btn.innerText = 'Enviado!';
                             }
-
-                            /* deixa o envio nativo acontecer no iframe */
                         });
                     </script>
                 </div>
