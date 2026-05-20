@@ -540,14 +540,8 @@
             @media (max-width: 767px) {
 
                 #hero {
-                    padding: 50px 0;
-                }
-
-                h1 {
-                    font-size: 35px;
-                    line-height: 1;
-                    padding: 0;
-                    text-align: center;
+                    padding: 180px 0 50px 0;
+                    overflow-x: hidden;
                 }
 
                 #hero .container {
@@ -555,6 +549,20 @@
                     padding: 0 30px;
                     gap: 30px;
                 }
+
+                #hero .container {
+                    width: 100%;
+                    max-width: 100%;
+                    padding: 0 20px;
+                }
+
+                h1 {
+                    font-size: 35px;
+                    line-height: 1;
+                    padding: 0 30px;
+                    text-align: center;
+                }
+
 
             }
         </style>
@@ -602,10 +610,12 @@
                     }
 
                     .input-group textarea {
+                        width: 100%;
+                        min-width: 0;
                         max-width: 100%;
-                        min-width: 400px;
                         min-height: 100px;
                         max-height: 200px;
+                        resize: vertical;
                     }
 
                     .input-group label,
@@ -803,6 +813,19 @@
                         .form-items {
                             grid-template-columns: 1fr;
                             gap: 20px;
+                        }
+
+                        .form-box {
+                            width: 100%;
+                            max-width: 100%;
+                            padding: 20px;
+                        }
+
+                        .input-group input,
+                        .input-group textarea,
+                        .input-group select {
+                            width: 100%;
+                            max-width: 100%;
                         }
                     }
 
@@ -2380,7 +2403,8 @@
                         periodicamente.<br /><br /><strong>12. CANAL DE CONTATO</strong><br><br>Para d&uacute;vidas,
                         solicita&ccedil;&otilde;es ou exerc&iacute;cio de direitos relacionados a esta Pol&iacute;tica,
                         o usu&aacute;rio poder&aacute; entrar em contato por meio da
-                        <a href="contato.html">p&aacute;gina de contato</a>.<br/><br /><strong>13. PREVEN&Ccedil;&Atilde;O &Agrave;
+                        <a href="contato.html">p&aacute;gina de contato</a>.<br /><br /><strong>13.
+                            PREVEN&Ccedil;&Atilde;O &Agrave;
                             LAVAGEM DE DINHEIRO E AO
                             FINANCIAMENTO DO TERRORISMO (PLD/FT)<br /></strong><br />A CFZ, no &acirc;mbito de sua
                         atua&ccedil;&atilde;o como correspondente banc&aacute;rio e participante da cadeia operacional
@@ -2835,7 +2859,8 @@
                         eventuais modifica&ccedil;&otilde;es.</p>
                     <p><strong>11. CONTATO</strong></p>
                     <p>Para esclarecimentos, solicita&ccedil;&otilde;es ou d&uacute;vidas relacionadas a esta
-                        Pol&iacute;tica, o usu&aacute;rio poder&aacute; entrar em contato por meio da <a href="contato.html">p&aacute;gina de contato</a>.</p>
+                        Pol&iacute;tica, o usu&aacute;rio poder&aacute; entrar em contato por meio da <a
+                            href="contato.html">p&aacute;gina de contato</a>.</p>
                 </div>
 
                 <div class="modal-actions">
