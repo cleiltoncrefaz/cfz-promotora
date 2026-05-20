@@ -246,10 +246,13 @@
 
             <nav class="menu" id="mobileMenu">
                 <ul>
-                    <li><a href="https://cleiltoncrefaz.github.io/cloudpagescrefaz/cfz-promotora#CFZ">Sobre a CFZ</a></li>
-                    <li><a href="https://cleiltoncrefaz.github.io/cloudpagescrefaz/cfz-promotora#produtos">Produtos</a></li>
+                    <li><a href="https://cleiltoncrefaz.github.io/cloudpagescrefaz/index.html#CFZ">Sobre a CFZ</a>
+                    </li>
+                    <li><a href="https://cleiltoncrefaz.github.io/cloudpagescrefaz/index.html#produtos">Produtos</a>
+                    </li>
                     <!-- <li><a href="#store">Lojas</a></li> -->
-                    <li><a href="https://cleiltoncrefaz.github.io/cloudpagescrefaz/cfz-promotora#trabalhe-conosco">Trabalhe com a CFZ</a></li>
+                    <li><a href="https://cleiltoncrefaz.github.io/cloudpagescrefaz/index.html#trabalhe-conosco">Trabalhe
+                            com a CFZ</a></li>
                 </ul>
             </nav>
         </div>
@@ -812,11 +815,11 @@
                     <form method="post" id="form-simulacao" target="hidden_iframe">
                         <input type="hidden" name="submitted" value="true">
 
-                        <!-- <div class="input-group">
+                        <div class="input-group" hidden>
                             <label for="assunto">Assunto <span class="required-asterisk">*</span></label>
                             <input type="text" id="assunto" name="assunto"
                                 placeholder="Ex: Dúvida sobre crédito do trabalhador" maxlength="100" required>
-                        </div> -->
+                        </div>
 
                         <div class="input-group">
                             <label for="nome">Nome <span class="required-asterisk">*</span></label>
@@ -824,12 +827,12 @@
                                 required>
                         </div>
 
-                        <!-- <div class="input-group">
+                        <div class="input-group" hidden>
                             <label for="cpf">CPF <span class="required-asterisk">*</span></label>
                             <input type="text" id="cpf" name="cpf" placeholder="(000.000.000-00)" maxlength="14"
                                 required="">
                             <p id="cpfError" class="field-error">CPF inválido. Verifique e tente novamente.</p>
-                        </div> -->
+                        </div>
 
                         <div class="input-group">
                             <label for="celular">Celular <span class="required-asterisk">*</span></label>
@@ -844,14 +847,16 @@
                             <p id="emailError" class="field-error">Digite um e-mail válido.</p>
                         </div>
 
-                        <div class="input-group">
+                        <div class="input-group" hidden>
                             <label for="empresa">Produto <span class="required-asterisk">*</span></label>
                             <select id="empresa" name="Empresa" required>
                                 <option value="" disabled selected hidden>Selecione</option>
-                                <option value="Crédito parcelado na conta de luz">Crédito parcelado na conta de luz</option>
+                                <option value="Crédito parcelado na conta de luz">Crédito parcelado na conta de luz
+                                </option>
                                 <option value="Crédito do Trabalhador">Crédito do Trabalhador</option>
                                 <option value="Crédito com garantia de veículo">Crédito com garantia de veículo</option>
-                                <option value="Crédito direto ao consumidor - CDC energia">Crédito direto ao consumidor - CDC energia</option>
+                                <option value="Crédito direto ao consumidor - CDC energia">Crédito direto ao consumidor
+                                    - CDC energia</option>
                                 <option value="Crefaz Mais Saúde">Crefaz Mais Saúde</option>
                             </select>
                         </div>
@@ -860,7 +865,7 @@
                             <label for="message">Mensagem</label>
                             <textarea type="text" id="message" name="message"
                                 placeholder="Digite uma mensagem para entendermos melhor como podemos ajudar."
-                                maxlength="15000" required></textarea>
+                                maxlength="15000"></textarea>
                         </div>
 
                         <div class="lgpd-checkbox-wrapper">
@@ -938,75 +943,110 @@
                                     <span class="check-mark"></span>
 
                                     <span class="check-text">
-                                        Ao preencher este formulário, você concorda que usaremos seus dados exclusivamente para cumprir com a sua requisição, com base no legítimo interesse.
+                                        Ao preencher este formulário, você concorda que usaremos seus dados
+                                        exclusivamente para cumprir com a sua requisição, com base no legítimo
+                                        interesse.
                                     </span>
                                 </label>
 
                                 <p id="lgpdError" class="field-error">Você precisa aceitar os termos.</p>
                             </div>
-                            
+
                         </div>
 
                         <button class="form-button" type="submit">Enviar</button>
                     </form>
 
-                    <p id="successMsg">
-                        Cadastro realizado com sucesso!
-                    </p>
+                    <style>
+                        .success-message {
+                            margin-top: 16px;
+                            padding: 14px 18px;
+                            border-radius: 12px;
+                            background: #eaf8ef;
+                            color: #1d6b3b;
+                            font-size: 14px;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        }
+                    </style>
+                    <div id="successMsg" class="success-message" style="display:none;"></div>
+                    <!-- <p id="successMsg">Cadastro realizado com sucesso!</p> -->
 
                     <script>
                         const form = document.getElementById('form-simulacao');
-                        // const cpfInput = document.getElementById('cpf');
-                        const telInput = document.getElementById('celular');
                         const msg = document.getElementById('successMsg');
                         const btn = form.querySelector('button[type="submit"], input[type="submit"]');
 
-                        // const cpfError = document.getElementById('cpfError');
-                        const whatsappError = document.getElementById('whatsappError');
+                        const fields = {
+                            nome: document.getElementById('nome'),
+                            cpf: document.getElementById('cpf'),
+                            celular: document.getElementById('celular'),
+                            email: document.getElementById('email'),
+                            produto: document.getElementById('empresa'),
+                            mensagem: document.getElementById('message'),
+                            lgpd: document.getElementById('lgpd')
+                        };
 
-                        // function showCpfError() {
-                        //     if (cpfError) cpfError.style.display = 'block';
-                        //     cpfInput.classList.add('input-invalid');
-                        //     cpfInput.classList.remove('input-valid');
-                        // }
+                        const errors = {
+                            cpf: document.getElementById('cpfError'),
+                            celular: document.getElementById('whatsappError'),
+                            email: document.getElementById('emailError'),
+                            lgpd: document.getElementById('lgpdError')
+                        };
 
-                        // function hideCpfError() {
-                        //     if (cpfError) cpfError.style.display = 'none';
-                        //     cpfInput.classList.remove('input-invalid');
-                        // }
-
-                        function showWhatsappError() {
-                            if (whatsappError) whatsappError.style.display = 'block';
-                            telInput.classList.add('input-invalid');
-                            telInput.classList.remove('input-valid');
+                        function isVisible(el) {
+                            return el && !el.disabled && el.offsetParent !== null;
                         }
 
-                        function hideWhatsappError() {
-                            if (whatsappError) whatsappError.style.display = 'none';
-                            telInput.classList.remove('input-invalid');
+                        function onlyDigits(value) {
+                            return (value || '').replace(/\D/g, '');
                         }
 
-                        function showEmailError() {
-                            if (emailError) emailError.style.display = 'block';
-                            emailInput.classList.add('input-invalid');
-                            emailInput.classList.remove('input-valid');
+                        /* desativa campos escondidos para não travar o submit */
+                        Object.values(fields).forEach(field => {
+                            if (field && field.offsetParent === null) {
+                                field.disabled = true;
+                                field.required = false;
+                            }
+                        });
+
+                        function setInvalid(el, errorEl, message) {
+                            if (!el) return;
+
+                            el.classList.add('input-invalid');
+                            el.classList.remove('input-valid');
+
+                            if (errorEl) {
+                                if (message) errorEl.textContent = message;
+                                errorEl.style.display = 'block';
+                            }
                         }
 
-                        function hideEmailError() {
-                            if (emailError) emailError.style.display = 'none';
-                            emailInput.classList.remove('input-invalid');
+                        function setValid(el, errorEl) {
+                            if (!el) return;
+
+                            el.classList.remove('input-invalid');
+                            el.classList.add('input-valid');
+
+                            if (errorEl) {
+                                errorEl.style.display = 'none';
+                            }
                         }
 
-                        // function maskCPF(value) {
-                        //     value = value.replace(/\D/g, '');
-                        //     value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                        //     value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                        //     value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                        //     return value;
-                        // }
+                        function clearState(el, errorEl) {
+                            if (!el) return;
+
+                            el.classList.remove('input-invalid', 'input-valid');
+
+                            if (errorEl) {
+                                errorEl.style.display = 'none';
+                            }
+                        }
 
                         function maskPhone(value) {
-                            const digits = value.replace(/\D/g, '').slice(0, 11);
+                            const digits = onlyDigits(value).slice(0, 11);
 
                             if (digits.length <= 10) {
                                 return digits.replace(/(\d{0,2})(\d{0,4})(\d{0,4})/, function (_, p1, p2, p3) {
@@ -1019,128 +1059,109 @@
                             });
                         }
 
-                        // function validarCPF(cpf) {
-                        //     cpf = cpf.replace(/\D/g, '');
-                        //     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-
-                        //     let soma = 0;
-                        //     let resto;
-
-                        //     for (let i = 1; i <= 9; i++) {
-                        //         soma += parseInt(cpf.substring(i - 1, i), 10) * (11 - i);
-                        //     }
-
-                        //     resto = (soma * 10) % 11;
-                        //     if (resto === 10 || resto === 11) resto = 0;
-                        //     if (resto !== parseInt(cpf.substring(9, 10), 10)) return false;
-
-                        //     soma = 0;
-                        //     for (let i = 1; i <= 10; i++) {
-                        //         soma += parseInt(cpf.substring(i - 1, i), 10) * (12 - i);
-                        //     }
-
-                        //     resto = (soma * 10) % 11;
-                        //     if (resto === 10 || resto === 11) resto = 0;
-                        //     if (resto !== parseInt(cpf.substring(10, 11), 10)) return false;
-
-                        //     return true;
-                        // }
-
-                        function validarWhatsapp(valor) {
-                            const digits = valor.replace(/\D/g, '');
+                        function validarTelefone(valor) {
+                            const digits = onlyDigits(valor);
 
                             if (!(digits.length === 10 || digits.length === 11)) return false;
 
                             const ddd = parseInt(digits.substring(0, 2), 10);
-
                             if (ddd < 11 || ddd > 99) return false;
 
-                            if (digits.length === 11) {
-                                return digits[2] === '9';
-                            }
+                            if (digits.length === 11) return digits[2] === '9';
 
-                            if (digits.length === 10) {
-                                return ['2', '3', '4', '5'].includes(digits[2]);
-                            }
-
-                            return false;
+                            return ['2', '3', '4', '5'].includes(digits[2]);
                         }
 
                         function validarEmail(email) {
-                            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email || '').trim());
                         }
 
-                        // cpfInput.addEventListener('input', function (e) {
-                        //     e.target.value = maskCPF(e.target.value);
+                        function validarObrigatorio(el) {
+                            if (!isVisible(el) || !el.required) return true;
 
-                        //     const digits = e.target.value.replace(/\D/g, '');
-                        //     if (digits.length < 11) {
-                        //         hideCpfError();
-                        //         cpfInput.classList.remove('input-valid');
-                        //         return;
-                        //     }
+                            if (!el.value.trim()) {
+                                setInvalid(el, null);
+                                return false;
+                            }
 
-                        //     if (validarCPF(e.target.value)) {
-                        //         hideCpfError();
-                        //         cpfInput.classList.add('input-valid');
-                        //     } else {
-                        //         showCpfError();
-                        //     }
-                        // });
+                            setValid(el, null);
+                            return true;
+                        }
 
-                        // cpfInput.addEventListener('blur', function () {
-                        //     const digits = cpfInput.value.replace(/\D/g, '');
+                        if (isVisible(fields.celular)) {
+                            fields.celular.addEventListener('input', function () {
+                                fields.celular.value = maskPhone(fields.celular.value);
 
-                        //     if (!digits) {
-                        //         hideCpfError();
-                        //         cpfInput.classList.remove('input-valid');
-                        //         return;
-                        //     }
+                                if (onlyDigits(fields.celular.value).length < 10) {
+                                    clearState(fields.celular, errors.celular);
+                                    return;
+                                }
 
-                        //     if (digits.length === 11 && validarCPF(cpfInput.value)) {
-                        //         hideCpfError();
-                        //         cpfInput.classList.add('input-valid');
-                        //     } else {
-                        //         showCpfError();
-                        //     }
-                        // });
+                                validarTelefone(fields.celular.value)
+                                    ? setValid(fields.celular, errors.celular)
+                                    : setInvalid(fields.celular, errors.celular, 'Digite um celular válido.');
+                            });
+                        }
 
-                        telInput.addEventListener('input', function (e) {
-                            e.target.value = maskPhone(e.target.value);
+                        if (isVisible(fields.email)) {
+                            fields.email.addEventListener('blur', function () {
+                                if (!fields.email.value.trim()) {
+                                    clearState(fields.email, errors.email);
+                                    return;
+                                }
 
-                            const digits = e.target.value.replace(/\D/g, '');
-                            if (digits.length < 10) {
-                                hideWhatsappError();
-                                telInput.classList.remove('input-valid');
+                                validarEmail(fields.email.value)
+                                    ? setValid(fields.email, errors.email)
+                                    : setInvalid(fields.email, errors.email, 'Digite um e-mail válido.');
+                            });
+                        }
+
+                        if (isVisible(fields.lgpd)) {
+                            fields.lgpd.addEventListener('change', function () {
+                                if (fields.lgpd.checked && errors.lgpd) {
+                                    errors.lgpd.style.display = 'none';
+                                }
+                            });
+                        }
+
+                        form.addEventListener('submit', function (event) {
+                            let hasError = false;
+
+                            if (!validarObrigatorio(fields.nome)) hasError = true;
+
+                            if (isVisible(fields.celular) && fields.celular.required && !validarTelefone(fields.celular.value)) {
+                                setInvalid(fields.celular, errors.celular, 'Digite um celular válido.');
+                                hasError = true;
+                            }
+
+                            if (isVisible(fields.email) && fields.email.required && !validarEmail(fields.email.value)) {
+                                setInvalid(fields.email, errors.email, 'Digite um e-mail válido.');
+                                hasError = true;
+                            }
+
+                            if (isVisible(fields.lgpd) && fields.lgpd.required && !fields.lgpd.checked) {
+                                if (errors.lgpd) errors.lgpd.style.display = 'block';
+                                hasError = true;
+                            }
+
+                            if (hasError) {
+                                event.preventDefault();
                                 return;
                             }
 
-                            if (validarWhatsapp(e.target.value)) {
-                                hideWhatsappError();
-                                telInput.classList.add('input-valid');
-                            } else {
-                                showWhatsappError();
+                            if (msg) {
+                                msg.style.display = 'flex';
+                                msg.innerHTML = '✅ Formulário enviado com sucesso!';
                             }
+
+                            if (btn) {
+                                btn.disabled = true;
+                                btn.style.opacity = '0.85';
+                                btn.innerText = 'Enviado!';
+                            }
+
+                            /* deixa o envio nativo acontecer no iframe */
                         });
-
-                        telInput.addEventListener('blur', function () {
-                            const digits = telInput.value.replace(/\D/g, '');
-
-                            if (!digits) {
-                                hideWhatsappError();
-                                telInput.classList.remove('input-valid');
-                                return;
-                            }
-
-                            if (validarWhatsapp(telInput.value)) {
-                                hideWhatsappError();
-                                telInput.classList.add('input-valid');
-                            } else {
-                                showWhatsappError();
-                            }
-                        });
-
-
                     </script>
                 </div>
             </div>
@@ -1495,7 +1516,6 @@
                 const acceptPrivacy = document.getElementById("acceptPrivacy");
 
                 function openPrivacyModal(event) {
-                    event.preventDefault();
                     privacyModal.classList.add("show");
                     privacyModal.setAttribute("aria-hidden", "false");
                 }
@@ -1708,9 +1728,9 @@
                     .contact-section a {
                         color: #fff;
                         font-size: 18px;
-                        background: #ef6b22;
+                        background: var(--laranja-crefaz);
                         text-decoration: none;
-                        border: 2px solid #ef6b22;
+                        border: 2px solid var(--laranja-crefaz);
                         padding: 15px 10px;
                         border-radius: 60px;
                         text-align: center;
@@ -1815,7 +1835,7 @@
 
             .modal-content p {
                 line-height: 1.4;
-                color: #163056;
+                color: var(--azul-crefaz);
             }
 
             .modal-actions {
