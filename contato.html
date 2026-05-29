@@ -846,7 +846,22 @@
                         <input type="hidden" name="submitted" value="true">
 
                         <div class="input-group">
-                            <label for="assunto">Assunto <span class="required-asterisk">*</span></label>
+                            <label for="assunto">Selecione o assunto <span class="required-asterisk">*</span></label>
+
+                            <select id="assuntosSugestoes" required> 
+                                <option value="" disabled selected hidden>Selecione</option>
+                                <option value="Crédito">Crédito</option>
+                                <option value="Envio/atualização de documentos">Envio/atualização de documentos</option>
+                                <option value="Acompanhamento de proposta">Acompanhamento de proposta</option>
+                                <option value="Reclamações">Reclamações</option>
+                                <option value="LGPD e privacidade">LGPD e privacidade</option>
+                                <option value="Parcerias">Parcerias</option>
+                                <option value="Outros assuntos">Outros assuntos</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group" hidden>
+                            <label for="assunto">Assunto  <span class="required-asterisk">*</span></label>
 
                             <input type="text" id="assunto" name="assunto" list="assuntosSugestoes"
                                 placeholder="Ex: Dúvida sobre crédito do trabalhador" maxlength="100" required>
