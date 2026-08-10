@@ -537,10 +537,8 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                /* Mantém o texto centralizado verticalmente em relação ao espaço dele */
                 align-self: center;
                 padding-bottom: 40px;
-                /* Um respiro para o texto não colar no fundo */
             }
 
             .content-text strong {
@@ -564,7 +562,6 @@
                 height: 100%;
             }
 
-            /* SLIDE 2 - Preenchimento Completo */
             .slide-2 {
                 padding-top: var(--header-height, 120px);
                 background: var(--azul-crefaz);
@@ -603,7 +600,6 @@
                     grid-template-columns: 1fr;
                     gap: 20px;
                     align-items: center;
-                    /* No mobile volta ao centro */
                 }
 
                 .content-text {
@@ -615,7 +611,6 @@
                 }
 
                 .slide-2-img {
-                    /* Permite que a imagem no mobile cubra a área sem distorcer */
                     object-fit: cover;
                 }
             }
@@ -653,7 +648,6 @@
                 right: 20px;
             }
 
-            /* Dots / Indicadores */
             .hero-dots {
                 position: absolute;
                 bottom: 25px;
@@ -899,9 +893,9 @@
                 prevBtn.addEventListener("click", prevSlide);
 
                 // Auto Play
-                // function startAutoSlide() {
-                //     autoSlideInterval = setInterval(nextSlide, intervalTime);
-                // }
+                function startAutoSlide() {
+                    autoSlideInterval = setInterval(nextSlide, intervalTime);
+                }
 
                 function stopAutoSlide() {
                     clearInterval(autoSlideInterval);
@@ -939,7 +933,7 @@
         <style>
             #produtos {
                 background: #fff;
-                padding: 20px 20px 100px 20px;
+                padding: 60px 0px;
             }
 
             #produtos .btn-secondary {
