@@ -477,7 +477,7 @@
 
                 /* Garante altura total da tela */
                 width: 100vw;
-                height: 100vh;
+                height: 90vh;
                 display: flex;
                 flex-direction: column;
             }
@@ -548,7 +548,7 @@
             .image-hero {
                 width: 100%;
                 max-width: 500px;
-                max-height: calc(100vh - var(--header-height, 150px));
+                max-height: calc(85vh - var(--header-height, 150px));
                 object-fit: contain;
                 display: block;
                 margin: 0 auto;
@@ -618,7 +618,7 @@
             /* Setas de Navegação */
             .hero-arrow {
                 position: absolute;
-                top: 50%;
+                top: calc(50% - -35px);
                 transform: translateY(-50%);
                 z-index: 10;
                 width: 45px;
@@ -650,7 +650,7 @@
 
             .hero-dots {
                 position: absolute;
-                bottom: 25px;
+                bottom: 20px;
                 left: 50%;
                 transform: translateX(-50%);
                 z-index: 10;
@@ -674,6 +674,9 @@
             }
 
             @media (max-width: 767px) {
+                #hero {
+                    height: 100vh;
+                }
 
                 .slide-1 .container {
                     padding: 30px 30px 0 30px;
